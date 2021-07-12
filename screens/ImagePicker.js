@@ -10,9 +10,10 @@ const ImagePhoto = ({ navigation }) => {
   const [photoLibrary,setPhotoLibrary] = useState(null)
   
   const openCamera =  () =>{
-    launchCamera({mediaType:'photo',quality:1,includeBase64:true,saveToPhotos:true,cancelButtonTitle: "Annuler",maxWidth:1000,maxHeight:600},(response) => {
-      console.log(response)
+    launchCamera({base64:true,mediaType:'photo',quality:1,includeBase64:true,saveToPhotos:true,cancelButtonTitle: "Annuler",maxWidth:1000,maxHeight:600},(response) => {
+      // console.log(response)
       setPhotoCamera(response.uri)
+      console.log(response.base64)
     })
   }
   const openLibrary =  () =>{
@@ -21,6 +22,25 @@ const ImagePhoto = ({ navigation }) => {
       setPhotoLibrary(response.uri)
     })
   }
+  // const detectText = (base64) => {
+  //   fetch("https://vision.googleapis.com/v1/images:annotate?key=" + "AIzaSyBz4Z44pTS0fHLYyZ7W1_Cs-Lv6zvjB138", {
+  //       method: 'POST',
+  //       body: JSON.stringify({
+  //         "requests": [{
+  //           "image": { "content": base64 },
+  //           "features": [
+  //               { "type": "TEXT_DETECTION" }
+  //           ]}]
+  //     })
+  //   })
+  //   .then(response => { return response.json()})
+  //   .then(jsonRes => {
+  //     let text = jsonRes.responses[0].fullTextAnnotation.text
+  //     navigation.navigate('Details', { text: text })
+  //   }).catch(err => {
+  //     console.log('Error', err)
+  //   })
+  // }
   return (
     <Container>
        <Header style={{height:50}}>
@@ -40,10 +60,10 @@ const ImagePhoto = ({ navigation }) => {
     <Button title="Choisir Image" onPress={() => openLibrary()} />
     </TouchableOpacity>  
    </Container>
-    <Container style={{backgroundColor:'grey'}}>
+    {/* <Container style={{backgroundColor:'grey'}}> */}
     {/* <Image source={{uri:photoCamera}} style={{width:480,height:480}}></Image> */}
-    <Image source={{uri:photoLibrary || photoCamera}} style={{width:480,height:480}}></Image>
-    </Container>
+    {/* <Image source={{uri:photoLibrary || photoCamera}} style={{width:480,height:480}}></Image> */}
+    {/* </Container> */}
    </Container>
    
   );

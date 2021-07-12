@@ -82,12 +82,12 @@ const HomeScreen = ({navigation,props}) => {
     const [photoCamera,setPhotoCamera] = useState(null)
     const [photoLibrary,setPhotoLibrary] = useState(null)
     
-    // const openCamera =  () =>{
-    //   launchCamera({mediaType:'photo',quality:1,includeBase64:false,saveToPhotos:true,cancelButtonTitle: "Annuler",maxWidth:1000,maxHeight:600},(response) => {
-    //     console.log(response)
-    //     setPhotoCamera(response.uri)
-    //   })
-    // }
+    const openCamera =  () =>{
+      launchCamera({mediaType:'photo',quality:1,includeBase64:false,saveToPhotos:true,cancelButtonTitle: "Annuler",maxWidth:1000,maxHeight:600},(response) => {
+        console.log(response)
+        setPhotoCamera(response.uri)
+      })
+    }
     const openLibrary =  () =>{
       launchImageLibrary({includeBase64:false},(response) => {
         console.log(response)
@@ -183,7 +183,7 @@ const HomeScreen = ({navigation,props}) => {
     {/* <Button title="ValiderImage" onPress={()=>submitPhoto()}/> */}
     <Button title="Valider" onPress={()=>submitData()}/>
     <TouchableOpacity>
-    {/* <Button title="Camera" onPress={() => openCamera()}/> */}
+    <Button title="Camera" onPress={() => openCamera()}/>
    
     </TouchableOpacity>  
        </Container>
